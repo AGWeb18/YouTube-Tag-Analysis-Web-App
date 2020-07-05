@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "YouTube_Tag_Analysis", "YouTube_Tag_Analysis\YouTube_Tag_Analysis.pyproj", "{19DA63EB-06CE-4A8B-9442-02CE08326F1D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{19DA63EB-06CE-4A8B-9442-02CE08326F1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19DA63EB-06CE-4A8B-9442-02CE08326F1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19DA63EB-06CE-4A8B-9442-02CE08326F1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19DA63EB-06CE-4A8B-9442-02CE08326F1D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B0E9F61E-0438-47CF-A995-EF38794CD9AA}
+	EndGlobalSection
+EndGlobal
