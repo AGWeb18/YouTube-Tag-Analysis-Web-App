@@ -1,0 +1,87 @@
+﻿{% extends "layout.html" %}
+
+{% block content %}
+
+
+    <div class="row">
+
+        <h1 style="text-align:center; font-size:40px;">
+            Your search phrase: <strong>{{ search_phrase }}</strong>
+        </h1>
+
+        <div class="col-md-3 col-sm-12">
+            <h3>Top Tags</h3>
+            <br />
+            <ol>
+                {%for tag in top_tags %}
+
+                <li style="font-size:18px;">{{tag}}</li>
+                {%endfor%}
+            </ol>
+        </div>
+
+        <div class="col-md-5 col-sm-12">
+            <h3>Tag Visualization</h3>
+            <div id="barchart"></div>
+        </div>
+
+        <div class="col-md-4 col-sm-12">
+            <h3>Tag Details</h3>
+            <br />
+            <p>
+                <ul>
+                    <li><strong>{{ top_tag_vid_count }}</strong> of your <strong>{{num_vids}}</strong> most recent relevant videos contained a top tag!</li>
+                    <li>Your top tag score is: <strong>{{ top_tag_score }}</strong></li>
+                    <li>Top {{competitor_num_vid}} videos tag score is: <strong>{{ competitor_top_tag_score }}</strong></li>
+                </ul>           
+            </p>
+
+            <br /><br />
+            <div class="well well-sm"> Add the top tags to your videos to increase your score and get more views!</div>
+
+        </div>
+
+    </div>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+
+    const data_json = {{ data | tojson }};
+
+
+    console.log(data_json)
+
+    // Load google charts
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    // Draw the chart and set the chart values
+    function drawChart() {
+
+       // Optional; add a title and set the width and height of the chart
+        var options_fullStacked = {
+            isStacked: true,
+            height: '350',
+            width : '350',
+            legend: {position: 'top', maxLines: 1},
+            vAxis: {
+                minValue: 0,
+                ticks: [0, 25, 50, 75, 100]
+            }
+        };
+
+        // Set Data Here
+        var data = google.visualization.arrayToDataTable([
+            ['Genre', 'Current', 'With New Tags',  { role: 'annotation' } ],
+            ['Your Score', data_json['top_tag_score'], 100 - data_json['top_tag_score'], ''],
+            ['Competitor', data_json['competitor_top_tag_score'], 0, '']
+        ]);
+
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('barchart'));
+        chart.draw(data, options_fullStacked);
+    }
+</script>
+
+{% endblock %}

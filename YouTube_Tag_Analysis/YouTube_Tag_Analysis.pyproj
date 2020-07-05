@@ -69,6 +69,8 @@
     <Content Include="YouTube_Tag_Analysis\templates\contact.html" />
     <Content Include="YouTube_Tag_Analysis\templates\index.html" />
     <Content Include="YouTube_Tag_Analysis\templates\layout.html" />
+    <Content Include="YouTube_Tag_Analysis\templates\NewFile1.txt" />
+    <Content Include="YouTube_Tag_Analysis\templates\results.html" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />
   <!-- Specify pre- and post-build commands in the BeforeBuild and 

@@ -2,32 +2,47 @@
 
 {% block content %}
 
-<div class="jumbotron">
-    <h1>Flask</h1>
-    <p class="lead">Flask is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://flask.pocoo.org/" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+<div class="jumbotron" style="text-align: center; padding: 20px 10px;">
+    <h1>YouTube Tag Finder</h1>
+    <p class="lead">Add popular tags to your YouTube videos to get more views!</p>
 </div>
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
+
+    <div class="col-md-6 col-sm-12">
+        <br />
         <p>
-            Flask gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            By adding relevant, popular tags to your videos, they are more likely to appear as recommendations from the YouTube algorithms.
+            Use the Tag Finder tool below by entering a search phrase related to your channel. The <strong>FREE</strong> tool will show you the tog tags used
+            from the top ranked videos. You can then add the relevant tags to your relevant videos and watch your views grow!
+
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-up-right-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm4.5 5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V6.707l-4.146 4.147a.5.5 0 0 1-.708-.708L9.293 6H6.5a.5.5 0 0 1 0-1z" />
+            </svg>
+
         </p>
-        <p><a class="btn btn-default" href="http://flask.pocoo.org/docs/">Learn more &raquo;</a></p>
+       
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>The Python Package Index is a repository of software for the Python programming language.</p>
-        <p><a class="btn btn-default" href="https://pypi.python.org/pypi">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Microsoft Azure</h2>
-        <p>You can easily publish to Microsoft Azure using Visual Studio. Find out how you can host your application using a free trial today.</p>
-        <p><a class="btn btn-default" href="http://azure.microsoft.com">Learn more &raquo;</a></p>
+
+    <div class="col-md-6 col-sm-12">
+        <h2>FREE YouTube Tag Finder Tool</h2>
+        <form method="post" action=".">
+            <div class="form-group">
+                <p><input type="search" class="form-control" name="search_phrase" placeholder="Enter a search phrase" /></p>
+                <p><input type="submit" class="btn btn-secondary" value="Search" /></p>
+            </div>
+        </form>
     </div>
 </div>
-
+<!--
+<div class="row">
+    <div class="col-lg-12">
+        <h2>Update Your Tags</h2>
+        <p>
+            To add the top tags to your YouTube video, open YouTube Studio, to go "Videos", hover over a video and choose "details", scroll to
+            the bottom and add comma separated tags.
+        </p>
+    </div>
+</div>
+-->
 {% endblock %}
