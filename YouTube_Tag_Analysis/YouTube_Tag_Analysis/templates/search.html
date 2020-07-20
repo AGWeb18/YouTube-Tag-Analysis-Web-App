@@ -2,9 +2,9 @@
 
 {% block content %}
 
-<div class="jumbotron" style="text-align: center; padding: 20px 10px;">
-    <h1>YouTube Tag Finder</h1>
-    <p class="lead">Add popular tags to your YouTube videos to get more views!</p>
+<div class="jumbotron" style="text-align: center; padding: 20px 10px; background-color: red;">
+    <h1 style="color: white">YouTube Tag Finder</h1>
+    <p class="lead" style="color: white">Add popular tags to your YouTube videos to get more views!</p>
 </div>
 
 <div class="row">
@@ -13,7 +13,7 @@
         <br />
         <p>
             By adding relevant, popular tags to your videos, they are more likely to appear as recommendations from the YouTube algorithms.
-            Use the Tag Finder tool below by entering a search phrase related to your channel. The <strong>FREE</strong> tool will show you the tog tags used
+            Use the Tag Finder tool by entering a search phrase related to your channel. The <strong>FREE</strong> tool will show you the top tags used
             from the top ranked videos. You can then add the relevant tags to your relevant videos and watch your views grow!
 
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-up-right-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -26,10 +26,13 @@
 
     <div class="col-md-6 col-sm-12">
         <h2>FREE YouTube Tag Finder Tool</h2>
-        <form method="post" action=".">
+        <form method="post" action="/search">
             <div class="form-group">
-                <p><input type="search" class="form-control" name="search_phrase" placeholder="Enter a search phrase" /></p>
-                <p><input type="submit" class="btn btn-secondary" value="Search" /></p>
+                <p><input type="search" class="form-control" name="search_phrase" required placeholder="Enter a search phrase" /> <p />
+                <!--<p><input type="text" class="form-control" name="channel_id" required placeholder="Enter your YouTube channel name" /><p />
+                <p>Please grant access to your YouTube account by going <a href="/authorize" target="_blank">here</a> and paste the code below.</p>
+                <p><input type="text" class="form-control" name="code" required placeholder="Enter your access code" /><p />-->
+                <input type="submit" class="btn btn-secondary" value="Search" />
             </div>
         </form>
     </div>
@@ -45,4 +48,5 @@
     </div>
 </div>
 -->
+
 {% endblock %}

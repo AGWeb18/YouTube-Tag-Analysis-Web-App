@@ -2,10 +2,30 @@
 from collections import Counter
 import json
 from apiclient.discovery import build
+from google_auth_oauthlib.flow import InstalledAppFlow # pip install google-auth-oauthlib
 
-api_key = "AIzaSyD5m5y0gw8l23ZLUYIlRJi0_MkDHeiv9E4"  #MHR
+
+api_key = "AIzaSyDwKbERnytw2fGDlv3XIaZIrfIz3i_3hTg"  #MHR new Jul 6
+
+wazzy_chan_id = "UC-3-7clZ-mvVDhWLaKAYGWA" 
+
+#client_secret_file = r'C:\Users\DrSynapse\source\repos\YouTube_Tag_Analysis\YouTube_Tag_Analysis\YouTube_Tag_Analysis\data.json'
+#scopes = ['https://www.googleapis.com/auth/youtube.read-only']
 
 youtube = build("youtube", "v3", developerKey=api_key)	
+
+def values_from_list_of_list(series):
+  """returns all the values from a list of list containing strings.
+
+  Args:
+      series (pandas Series): The data (string).
+
+  Returns:
+      list: the individual values from the series
+  """
+
+  values = [item.lower() for row in series for item in row]
+  return values
 
 def search_get_top_50_vids(search_phrase):
 	  """returns 50 YouTube results for a search_phrase`.`
@@ -65,11 +85,9 @@ def get_top_50_vids_details(search_phrase):
 		Returns:
 			full_vid_response (DataFrame): top 50 video details 
 		"""
-
-	  
 	  #Gets the top 50 video IDs
 	  s_vid_id = search_get_top_50_vids(search_phrase)
-		
+
 	  #------------------------------Get Details of the top 50 videos--------------------------#
 	  top_videos_details = youtube.videos().list(
 		part='snippet,contentDetails,statistics,topicDetails',
@@ -77,19 +95,17 @@ def get_top_50_vids_details(search_phrase):
 	  )
 
 	  top_videos_details_results = top_videos_details.execute()
-	  
-
 
 		#  Each video has different information in the json data  
 		#  We used "try-except" but had trouble and had to check if values existed.
 		#  Instead, create three DFs based on the current video, merge them together then
 		#  Concat to the running list.
 		#  The concat takes care of the mismatch of columns
-		
+
 		#TODO: Limit the # of columns used
 		#TODO: replace all NaN with 0.
 	  full_vid_response = pd.DataFrame()
-		
+
 	  for row in top_videos_details_results["items"]:
 		  s_df = pd.DataFrame({row["id"]: row["snippet"]}).T
 		  s_df["id"] = row["id"]
@@ -100,6 +116,7 @@ def get_top_50_vids_details(search_phrase):
 		  temp_df = pd.merge(s_df, st_df, on="id")
 		  temp_df = pd.merge(temp_df, cd_df, on="id")
 		  full_vid_response = pd.concat([full_vid_response, temp_df], axis=0)
+
 	  return full_vid_response
 
 
@@ -120,7 +137,7 @@ def get_top_tags(df, num):
   print(f"top_tags: {top_tags}")
   return top_tags
 
-def get_videos(chan_id):
+def get_videos(chan_id, search_phrase):
   """get the list of videos for channel id (up to 50)
 
   Args:
@@ -139,8 +156,9 @@ def get_videos(chan_id):
 
   videos_results = videos_request.execute()
   
-  with open('videos_results.json', 'w') as outfile:
-    json.dump(videos_results, outfile, indent=2)
+  #	Write to JSON FILE here. ----- 		
+  #with open('videos_results.json', 'w') as outfile:
+  #  json.dump(videos_results, outfile, indent=2)
 
   return videos_results
 
@@ -171,18 +189,13 @@ def get_old_tags(video_id):
     id = video_id
   )
 
-
   videos_details_results = videos_details.execute()
 
-  with open('videos_details_results.json', 'w') as outfile:
-    json.dump(videos_details_results, outfile, indent=2)
-
-
+ 
   l_of_responses = []
 
   for item in videos_details_results['items']:
       try:
-          #print(f"Old Tags: {item['snippet']['tags']}")
       
           ID = item['id']
           title = item['snippet']['title']
@@ -191,7 +204,7 @@ def get_old_tags(video_id):
           l_of_responses.append([ID, title, catID, tags])
       except:
           continue
-          #print("No tags")
+
 
   vid_tags_df = pd.DataFrame(
       l_of_responses,
@@ -225,29 +238,35 @@ def get_top_tag_info(tag_list, top_tags):
 
   return (top_tag_count, top_tag_vid_count)
 
-def tag_finder_main(search_phrase):
+def getChannelId(youtube_user):
+	query = youtube_user.channels().list(part="id", mine=True)
+	results = query.execute()
+
+	return results["items"][0]["id"]
+
+def tag_finder_main(credentials, search_phrase):
+
+	youtube_user = build('youtube', 'v3', credentials=credentials)
+
 	full_vid_response = get_top_50_vids_details(search_phrase)
 	competitor_num_vid = len(full_vid_response.tags)
 	top_tags = get_top_tags(full_vid_response, 10)
-	return {'top_tags':top_tags, }
 
-#	vids = get_videos(chan_id)
-#	vid_ids = videos_to_update(vids)
-#	vid_tags_df = get_old_tags(vid_ids)
-#	num_vids = len(vids["items"])
-#	top_tag_count, top_tag_vid_count = get_top_tag_info(vid_tags_df.tags, top_tags)
-#	competitor_top_tag_count, competitor_top_tag_vid_count = get_top_tag_info(full_vid_response.tags, top_tags)
-#	return {'vids':vids, 'vid_ids':vid_ids, 'vid_tags_df':vid_tags_df, 'num_vids':num_vids, 
-#		    'top_tag_count':top_tag_count, 'top_tag_vid_count':top_tag_vid_count, 
-#			'competitor_top_tag_count':competitor_top_tag_count, 
-#			'competitor_top_tag_vid_count':competitor_top_tag_vid_count}
+	channel_id = getChannelId(youtube_user)
+	vids = get_videos(channel_id, search_phrase)
+	vid_ids = videos_to_update(vids)
+	vid_tags_df = get_old_tags(vid_ids)
 	
-#count_of_top_tag = f"There are {top_tag_vid_count}/{num_vids} videos with a top tag."
-#top_tag_score = f"Your top tag score is {(top_tag_count/(num_vids*10))*100}%."
+	num_vids = len(vids["items"])
+	top_tag_count, top_tag_vid_count = get_top_tag_info(vid_tags_df.tags, top_tags)
+	competitor_top_tag_count, competitor_top_tag_vid_count = get_top_tag_info(full_vid_response.tags, top_tags)
 
-
-#competitor_count f"There are {competitor_top_tag_vid_count}/{competitor_num_vid} videos with a top tag.")
-#print(f"Competitor top tag score is {competitor_top_tag_count/(competitor_num_vid*10)*100}%.")
-
-
-
+	return {'full_vid_response':full_vid_response,
+		 'top_tags':top_tags, 
+		 'competitor_num_vid':competitor_num_vid,
+		 'channel_id':channel_id, 
+		 'vids':vids, 'vid_ids':vid_ids, 'vid_tags_df':vid_tags_df, 
+		 'num_vids':num_vids, 
+  	     'top_tag_count':top_tag_count, 'top_tag_vid_count':top_tag_vid_count, 
+		 'competitor_top_tag_count':competitor_top_tag_count, 
+		 'competitor_top_tag_vid_count':competitor_top_tag_vid_count}

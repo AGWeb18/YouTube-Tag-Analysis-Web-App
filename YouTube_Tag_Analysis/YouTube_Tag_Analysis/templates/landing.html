@@ -1,0 +1,111 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<style>
+    .img {
+        margin: 0 auto;
+        margin-bottom: 15px;
+        vertical-align: baseline;
+    }
+
+    .img_bord {
+        border: solid 2px;
+        border-color: black;
+    }
+</style>
+<div class="jumbotron" style="text-align: center; padding:10px 5px; background-color: red;">
+    <h1 style="color: white">YouTube Tag Finder</h1>
+    <p class="lead" style="color: white">Add popular tags to your YouTube videos to get more views!</p>
+</div>
+
+
+<div class="row">
+
+    <div class="col-md-4">
+        <img class="card-img-top" style="width:225px; margin-top:50%;margin: 93px auto 0px auto;display: block;" src="https://res.cloudinary.com/dwiezaou9/image/upload/v1594864974/YT%20Analysis/youtube_search.png" alt="Enter a search phrase">
+
+    </div>
+    <div class="col-md-4">
+        <img class="card-img-top" style="width:225px; height:225px;margin: 0px auto;display: block;" src="https://res.cloudinary.com/dwiezaou9/image/upload/v1594865090/YT%20Analysis/top_tags.png" alt="Get Top Tags">
+
+    </div>
+    <div class="col-md-4">
+        <img class="card-img-top" style="width:225px; height:225px;margin: 0px auto;display: block;" src="https://res.cloudinary.com/dwiezaou9/image/upload/v1594866448/YT%20Analysis/add_tags.png" alt="Add Top Tags">
+
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-4 text-center">
+        <h4 class="card-title">Enter Search Phrase</h4>
+        <p class="card-text"><a href="">Enter search phrases related to your channel.</a></p>
+    </div>
+    <div class="col-md-4 text-center">
+        <h4 class="card-title">Top Tags</h4>
+        <p class="card-text">We find the top tags from the top videos for that search phrase.</p>
+    </div>
+    <div class="col-md-4 text-center">
+        <h4 class="card-title">Increase Views</h4>
+        <p class="card-text">Increase traffic to your by adding the top tags.</p>
+    </div>
+
+</div>
+
+
+
+<div class="row">
+
+    <div class="col-md-6 col-sm-12">
+        <br />
+        <p>
+            By adding relevant, popular tags to your videos, they are more likely to appear as recommendations from the YouTube algorithms.
+            Use the Tag Finder tool by entering a search phrase related to your channel. The <strong>FREE</strong> tool will show you the top tags used
+            from the top ranked videos. You can then add the relevant tags to your relevant videos and watch your views grow!
+
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-up-right-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm4.5 5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V6.707l-4.146 4.147a.5.5 0 0 1-.708-.708L9.293 6H6.5a.5.5 0 0 1 0-1z" />
+            </svg>
+
+        </p>
+
+    </div>
+
+</div>
+
+<!--
+<div class="row">
+    <div class="card col-md-4 col-sm-12" style="width:33%;">
+        <img class="card-img-top" style="width:100%;" src="https://res.cloudinary.com/dwiezaou9/image/upload/v1594864974/YT%20Analysis/youtube_search.png" alt="Enter a search phrase">
+        <div class="row">
+            <div class="card-body">
+                <h4 class="card-title">Enter Search Phrase</h4>
+                <p class="card-text">Enter search phrases related to your channel.</p>
+            </div>
+        </div>
+    </div>
+    <div class="card col-md-4 col-sm-12" style="width:33%;">
+        <img class="card-img-top" style="width:100%;" src="https://res.cloudinary.com/dwiezaou9/image/upload/v1594865090/YT%20Analysis/top_tags.png" alt="Get Top Tags">
+        <div class="row">
+            <div class="card-body">
+                <h4 class="card-title">Top Tags</h4>
+                <p class="card-text">We find the top tags from the top videos for that search phrase.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card col-md-4 col-sm-12" style="width:33%;">
+        <img class="card-img-top" style="width:100%;" src="https://res.cloudinary.com/dwiezaou9/image/upload/v1594866448/YT%20Analysis/add_tags.png" alt="Add Top Tags">
+        <div class="row">
+            <div class="card-body">
+                <h4 class="card-title">Increase Views</h4>
+                <p class="card-text">Increase traffic to your by adding the top tags.</p>
+            </div>
+         </div>
+    </div>
+
+
+</div>
+-->
+{% endblock %}
