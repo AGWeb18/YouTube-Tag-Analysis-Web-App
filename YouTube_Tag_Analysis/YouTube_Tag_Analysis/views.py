@@ -4,7 +4,7 @@ https://docs.microsoft.com/en-us/visualstudio/liveshare/use/vscode
 """
 
 from datetime import datetime
-from YouTube_Tag_Analysis import app
+from YouTube_Tag_Analysis.YouTube_Tag_Analysis import app
 from flask import Flask, render_template, request, redirect, session, url_for
 from YouTube_Tag_Analysis.youtube_functions import tag_finder_main
 
