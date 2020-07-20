@@ -13,7 +13,7 @@ import google_auth_oauthlib.flow
 import os 
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
 
-client_secret_file = r'\app\YouTube_Tag_Analysis\YouTube_Tag_Analysis\data.json'
+client_secret_file = '/app/YouTube_Tag_Analysis/YouTube_Tag_Analysis/data.json'
 scopes = ['https://www.googleapis.com/auth/youtube']
 
 #COMPLETE: Optimize API call for Quota ---July 6th: Minimum Total call cost = ~220 units
