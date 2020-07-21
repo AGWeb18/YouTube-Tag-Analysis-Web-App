@@ -33,6 +33,7 @@ scopes = ['https://www.googleapis.com/auth/youtube']
 #TODO: Home Page - How do tags work? Short explanation of process.            
 
 #GA TODO
+#finish installing GIT/Heroku
 
 
 @app.route('/search', methods=['GET', 'POST'])
