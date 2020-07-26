@@ -63,9 +63,9 @@ def search():
             competitor_top_tag_count, competitor_top_tag_vid_count =  main_results['competitor_top_tag_count'], main_results['competitor_top_tag_vid_count']
 
 
-
-            top_tag_score = round((top_tag_count/(num_vids*10))*100, 2)
-            competitor_top_tag_score = round(competitor_top_tag_count/(competitor_num_vid*10)*100,2)
+			
+            top_tag_score = round((top_tag_count/(num_vids*10))*100, 2) if num_vids != 0 else 0
+            competitor_top_tag_score = round(competitor_top_tag_count/(competitor_num_vid*10)*100,2) if competitor_num_vid != 0 else 0
 
             multi_var_dict = {'top_tag_score':top_tag_score, 'competitor_top_tag_score':competitor_top_tag_score}
 
